@@ -1,5 +1,4 @@
 package szab.solarcharger;
-
 import android.app.Activity;
 import android.content.Context;
 import android.hardware.Sensor;
@@ -15,6 +14,7 @@ public class SolarChargerActivity extends Activity {
 	SensorManager mSensorManager;
 	Sensor myLightSensor;
 	private TextView textLightSensorData;
+	VUMeter vuMeter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class SolarChargerActivity extends Activity {
 		mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 		myLightSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
 		textLightSensorData = (TextView)findViewById(R.id.textView1);
-
+vuMeter = (VUMeter)findViewById(R.id.VUComponent);
 	}
 	
 
@@ -55,7 +55,7 @@ public class SolarChargerActivity extends Activity {
 			     textLightSensorData.setText("Light Sensor Date:"
 			       + String.valueOf(event.values[0]));
 			    }
-
+			vuMeter.setValue(event.values[0], 1000);
 		}
 	};
 
