@@ -1,14 +1,19 @@
 package szab.solarcharger;
+
 import android.app.Activity;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.TextView;
 import android.hardware.SensorEventListener;
 
-public class SolarChargerActivity extends Activity {
+public class SolarChargerActivity extends Activity implements OnClickListener{
+	private static final String TAG = "SolarCharger";
 	/** Called when the activity is first created. */
 
 	SensorManager mSensorManager;
@@ -23,22 +28,21 @@ public class SolarChargerActivity extends Activity {
 
 		mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 		myLightSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
-		textLightSensorData = (TextView)findViewById(R.id.textView1);
-vuMeter = (VUMeter)findViewById(R.id.VUComponent);
+		textLightSensorData = (TextView) findViewById(R.id.textView1);
+		vuMeter = (VUMeter) findViewById(R.id.VUComponent);
+		vuMeter.setOnClickListener(this);
 	}
-	
 
-    protected void onResume() {
-        super.onResume();
+	protected void onResume() {
+		super.onResume();
 		mSensorManager.registerListener(lightSensorEventListener,
 				myLightSensor, SensorManager.SENSOR_DELAY_NORMAL);
-    }
+	}
 
-    protected void onPause() {
-        super.onPause();
-        mSensorManager.unregisterListener(lightSensorEventListener);
-    }
-
+	protected void onPause() {
+		super.onPause();
+		mSensorManager.unregisterListener(lightSensorEventListener);
+	}
 
 	SensorEventListener lightSensorEventListener = new SensorEventListener() {
 
@@ -48,15 +52,26 @@ vuMeter = (VUMeter)findViewById(R.id.VUComponent);
 
 		}
 
-
 		@Override
 		public void onSensorChanged(SensorEvent event) {
-			if(event.sensor.getType()==Sensor.TYPE_LIGHT){
-			     textLightSensorData.setText("Light Sensor Date:"
-			       + String.valueOf(event.values[0]));
-			    }
+			if (event.sensor.getType() == Sensor.TYPE_LIGHT) {
+				textLightSensorData.setText("Light Sensor Date:"
+						+ String.valueOf(event.values[0]));
+			}
 			vuMeter.setValue(event.values[0], 1000);
 		}
 	};
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.VUComponent:
+			Log.d(TAG, "click");
+			break;
+
+		default:
+			break;
+		}
+	}
 
 }

@@ -3,7 +3,8 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical"
 	android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
+	android:layout_height="fill_parent"
+	android:background="@drawable/normal_bg">
 	<TextView
 		android:id="@+id/textView1"
 		android:layout_width="fill_parent"
@@ -16,10 +17,10 @@
 
 	</szab.solarcharger.VUMeter>
 
-	<ImageView
+<!-- 	<ImageView
 		android:id="@+id/imageView1"
-		android:src="@drawable/panel1"
+		android:src="@drawable/normal_bg"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"
-		android:scaleType="fitXY"></ImageView>
+		android:scaleType="fitXY"></ImageView> -->
 </LinearLayout>
