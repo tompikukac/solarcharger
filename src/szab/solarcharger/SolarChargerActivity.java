@@ -9,10 +9,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.TranslateAnimation;
 import android.widget.TextView;
 import android.hardware.SensorEventListener;
 
-public class SolarChargerActivity extends Activity implements OnClickListener{
+public class SolarChargerActivity extends Activity {
 	private static final String TAG = "SolarCharger";
 	/** Called when the activity is first created. */
 
@@ -30,7 +35,6 @@ public class SolarChargerActivity extends Activity implements OnClickListener{
 		myLightSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
 		textLightSensorData = (TextView) findViewById(R.id.textView1);
 		vuMeter = (VUMeter) findViewById(R.id.VUComponent);
-		vuMeter.setOnClickListener(this);
 	}
 
 	protected void onResume() {
@@ -61,17 +65,5 @@ public class SolarChargerActivity extends Activity implements OnClickListener{
 			vuMeter.setValue(event.values[0], 1000);
 		}
 	};
-
-	@Override
-	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.VUComponent:
-			Log.d(TAG, "click");
-			break;
-
-		default:
-			break;
-		}
-	}
 
 }
