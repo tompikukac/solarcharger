@@ -14,5 +14,6 @@
             </intent-filter>
         </activity>
 
+<activity android:name=".helpActivity"></activity>
     </application>
 </manifest>

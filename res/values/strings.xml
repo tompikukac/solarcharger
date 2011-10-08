@@ -1,5 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">charging...</string>
-    <string name="app_name">SolarCharger</string>
+	<string name="hello">charging...</string>
+	<string name="app_name">SolarCharger</string>
+	<string name="settings">Settings</string>
+	<string name="help">Help!</string>
+	<string name="exit">Exit</string>
+	<string name="helpLong">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula ante,
+		sodales non pharetra quis, pellentesque at metus. Mauris nec dui odio,
+		sed vulputate lorem. Integer pretium nulla at ligula consequat quis
+		blandit leo hendrerit. Cras nec orci metus, at pulvinar tortor. Ut
+		blandit mollis aliquam. Sed risus dolor, vestibulum ut lacinia ut,
+		feugiat vel ante. Sed sed mauris enim, et ultricies dui. Fusce eget
+		dictum quam. Donec viverra urna blandit quam consequat egestas.
+		Maecenas rhoncus mi vitae mi dignissim tristique. Vestibulum ante
+		ipsum primis in faucibus orci luctus et ultrices posuere cubilia
+		Curae; Aliquam eu porta metus. Curabitur feugiat congue urna, ut
+		aliquet nisi ultrices varius. Sed ac consequat ipsum.
+		Aliquam posuere nibh eget neque ultricies at consequat nisl faucibus. Donec
+		iaculis eros id elit pretium facilisis. Phasellus lorem augue,
+		volutpat ultricies luctus ut, ornare congue libero. Nam ut nibh augue,
+		in fermentum orci. Suspendisse volutpat mi nec ipsum sagittis
+		bibendum. Nullam hendrerit iaculis ipsum ac dictum. Donec in dui erat,
+		ac tincidunt odio. Vivamus pulvinar mollis augue nec condimentum.
+		Phasellus et metus a ligula pretium laoreet non sit amet nulla.
+		Vestibulum nisi risus, consequat a accumsan vitae, laoreet a eros.
+		Nunc mollis dui quis ante rutrum euismod ut sed metus. Aliquam arcu
+		felis, mattis ac suscipit sed, laoreet eget libero. Nunc non
+		consectetur neque. Pellentesque habitant morbi tristique senectus et
+		netus et malesuada fames ac turpis egestas.
+		Cras ut eros dolor, vitae porta nisl. Nunc tristique ultricies lacus, vel
+		iaculis sapien mattis quis. Class aptent taciti sociosqu ad litora
+		torquent per conubia nostra, per inceptos himenaeos. Aliquam massa
+		nisi, egestas quis rhoncus nec, pellentesque at massa. Phasellus
+		dapibus posuere turpis, a egestas lorem vestibulum et. Donec nec
+		mauris turpis. Nulla et sem sem. Suspendisse potenti. Sed et mi at est
+		iaculis sollicitudin nec at purus. Donec nec urna tellus, vel pulvinar
+		tortor. Donec facilisis dignissim ligula, vitae fringilla lorem
+		volutpat eu. In hac habitasse platea dictumst. Praesent vitae sem
+		nulla. Maecenas commodo euismod libero, nec volutpat est tempor ac.
+		Nulla sit amet neque justo, et feugiat turpis. Nulla facilisi.
+		Sed vestibulum odio et lectus luctus a facilisis nunc iaculis. Phasellus
+		magna tortor, vestibulum quis bibendum id, volutpat in ligula. Quisque
+		at ipsum arcu, et iaculis sapien. Aenean feugiat, urna id dictum
+		porttitor, tortor tortor cursus leo, laoreet iaculis dui quam nec
+		libero. Nam volutpat sem nec ligula ultricies vulputate. Nullam ac
+		venenatis mauris. Vivamus vel mauris eros, non pharetra nisl.
+		Praesent dapibus ipsum aliquam sapien ultrices ultricies volutpat mi
+		malesuada. Vestibulum id leo quis magna condimentum sollicitudin sit
+		amet quis orci. Pellentesque in dui vitae elit vulputate hendrerit
+		ultrices luctus lectus. In egestas sollicitudin orci, quis lacinia
+		ligula luctus eget. Nunc non cursus turpis. In ullamcorper turpis
+		vitae lectus vehicula dignissim. Duis luctus dui sed neque iaculis
+		venenatis. Aenean sed enim in eros interdum viverra et eget tellu
+	</string>
 </resources>

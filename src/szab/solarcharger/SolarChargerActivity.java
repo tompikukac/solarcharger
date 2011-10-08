@@ -2,11 +2,15 @@ package szab.solarcharger;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.AccelerateInterpolator;
@@ -17,7 +21,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.TextView;
 import android.hardware.SensorEventListener;
 
-public class SolarChargerActivity extends Activity {
+public class SolarChargerActivity extends SolarChargerBaseActivity {
 	private static final String TAG = "SolarCharger";
 	/** Called when the activity is first created. */
 
@@ -47,6 +51,7 @@ public class SolarChargerActivity extends Activity {
 		super.onPause();
 		mSensorManager.unregisterListener(lightSensorEventListener);
 	}
+
 
 	SensorEventListener lightSensorEventListener = new SensorEventListener() {
 
