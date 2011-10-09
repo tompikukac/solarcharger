@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="30dip"
+	android:background="#ff000000">
+
+	<TextView
+		android:id="@+id/leftText"
+		android:layout_width="wrap_content"
+		android:layout_height="fill_parent"
+		android:text="0%"
+		android:layout_alignParentLeft="true"
+		android:layout_marginLeft="10dip"
+		android:layout_marginRight="10dip"
+		android:gravity="center">
+	</TextView>
+	<TextView
+		android:id="@+id/rightText"
+		android:layout_width="wrap_content"
+		android:layout_height="fill_parent"
+		android:text="100%"
+		android:layout_alignParentRight="true"
+		android:layout_marginLeft="10dip"
+		android:layout_marginRight="10dip"
+		android:gravity="center">
+	</TextView>
+	<FrameLayout
+		android:id="@+id/batteryBar"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:layout_toRightOf="@id/leftText"
+		android:layout_toLeftOf="@id/rightText"
+		android:background="#ff448844">
+		<LinearLayout
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:weightSum="1.0">
+			<ImageView
+				android:id="@+id/batteryBarFull"
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent"
+				android:background="@drawable/grad_battery_full"
+				android:layout_weight=".30" />
+			<ImageView
+				android:id="@+id/batteryBarEmpty"
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent"
+				android:background="@drawable/grad_battery_empty"
+				android:visibility="visible"
+				android:layout_weight=".70" />
+		</LinearLayout>
+		<TextView
+			android:id="@+id/batteryPercentage"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:text="65%"
+			android:layout_gravity="center"
+			android:gravity="center" />
+	</FrameLayout>
+
+</RelativeLayout>
+

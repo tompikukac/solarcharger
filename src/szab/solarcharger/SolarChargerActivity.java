@@ -3,6 +3,7 @@ package szab.solarcharger;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -34,6 +35,7 @@ public class SolarChargerActivity extends SolarChargerBaseActivity {
 	Sensor myLightSensor;
 	private TextView textLightSensorData;
 	VUMeter vuMeter;
+	BatteryLevel batteryLevel;
 	SharedPreferences preferences;
 	private int[] BG_ID = { R.id.view_bg_1, R.id.view_bg_2, R.id.view_bg_3 };
 	PowerManager.WakeLock wl;
@@ -47,15 +49,14 @@ public class SolarChargerActivity extends SolarChargerBaseActivity {
 		myLightSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
 		textLightSensorData = (TextView) findViewById(R.id.textView1);
 		vuMeter = (VUMeter) findViewById(R.id.VUComponent);
-
+		batteryLevel = (BatteryLevel) findViewById(R.id.BatteryComponent);
 		preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
 	}
 
 	protected void onResume() {
 		super.onResume();
-		mSensorManager.registerListener(lightSensorEventListener,
-				myLightSensor, SensorManager.SENSOR_DELAY_NORMAL);
+		mSensorManager.registerListener(lightSensorEventListener, myLightSensor, SensorManager.SENSOR_DELAY_NORMAL);
 
 		String aaa = preferences.getString("listPref", "");
 		int myNum = 0;
@@ -68,12 +69,13 @@ public class SolarChargerActivity extends SolarChargerBaseActivity {
 		switchBG(myNum);
 
 		PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
-		wl = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK,
-				"Solar charger wake lock");
+		wl = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, "Solar charger wake lock");
 		if (preferences.getBoolean("checkboxKeepAwake", true)) {
 
 			wl.acquire();
 		}
+
+		batteryLevel.registerBatteryReceiver();
 	}
 
 	protected void onPause() {
@@ -82,6 +84,7 @@ public class SolarChargerActivity extends SolarChargerBaseActivity {
 		if (wl.isHeld()) {
 			wl.release();
 		}
+		batteryLevel.unregisterBatteryReceiver();
 	}
 
 	private void switchBG(int idx) {
@@ -112,8 +115,7 @@ public class SolarChargerActivity extends SolarChargerBaseActivity {
 		@Override
 		public void onSensorChanged(SensorEvent event) {
 			if (event.sensor.getType() == Sensor.TYPE_LIGHT) {
-				textLightSensorData.setText("Light Sensor Date:"
-						+ String.valueOf(event.values[0]));
+				textLightSensorData.setText("Light Sensor Date:" + String.valueOf(event.values[0]));
 			}
 			vuMeter.setValue(event.values[0], 1000);
 		}
