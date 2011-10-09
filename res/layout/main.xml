@@ -1,26 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical"
 	android:layout_width="fill_parent"
-	android:layout_height="fill_parent"
-	android:background="@drawable/normal_bg">
-	<TextView
-		android:id="@+id/textView1"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:text="@string/hello" />
-	<szab.solarcharger.VUMeter
-		android:id="@+id/VUComponent"
-		android:layout_height="wrap_content"
-		android:layout_width="fill_parent">
-
-	</szab.solarcharger.VUMeter>
-
-<!-- 	<ImageView
-		android:id="@+id/imageView1"
-		android:src="@drawable/normal_bg"
+	android:layout_height="fill_parent">
+	<ImageView
+		android:id="@+id/view_bg_1"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"
-		android:scaleType="fitXY"></ImageView> -->
-</LinearLayout>
+		android:background="@drawable/normal_bg_1"
+		android:visibility="gone" />
+
+	<ImageView
+		android:id="@+id/view_bg_2"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:background="@drawable/normal_bg_2"
+		android:visibility="gone" />
+
+	<ImageView
+		android:id="@+id/view_bg_3"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:background="@drawable/normal_bg_3"
+		android:visibility="visible" />
+
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+		<TextView
+			android:id="@+id/textView1"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/hello" />
+		<szab.solarcharger.VUMeter
+			android:id="@+id/VUComponent"
+			android:layout_height="wrap_content"
+			android:layout_width="fill_parent">
+
+		</szab.solarcharger.VUMeter>
+
+		<!--
+			<ImageView android:id="@+id/imageView1"
+			android:src="@drawable/normal_bg" android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:scaleType="fitXY"></ImageView>
+		-->
+	</LinearLayout>
+
+</FrameLayout>

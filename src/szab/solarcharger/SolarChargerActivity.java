@@ -3,10 +3,13 @@ package szab.solarcharger;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.PowerManager;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,7 +21,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.TranslateAnimation;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.hardware.SensorEventListener;
 
 public class SolarChargerActivity extends SolarChargerBaseActivity {
@@ -29,6 +34,9 @@ public class SolarChargerActivity extends SolarChargerBaseActivity {
 	Sensor myLightSensor;
 	private TextView textLightSensorData;
 	VUMeter vuMeter;
+	SharedPreferences preferences;
+	private int[] BG_ID = { R.id.view_bg_1, R.id.view_bg_2, R.id.view_bg_3 };
+	PowerManager.WakeLock wl;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -39,19 +47,59 @@ public class SolarChargerActivity extends SolarChargerBaseActivity {
 		myLightSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
 		textLightSensorData = (TextView) findViewById(R.id.textView1);
 		vuMeter = (VUMeter) findViewById(R.id.VUComponent);
+
+		preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
 	}
 
 	protected void onResume() {
 		super.onResume();
 		mSensorManager.registerListener(lightSensorEventListener,
 				myLightSensor, SensorManager.SENSOR_DELAY_NORMAL);
+
+		String aaa = preferences.getString("listPref", "");
+		int myNum = 0;
+
+		try {
+			myNum = Integer.parseInt(aaa);
+		} catch (NumberFormatException nfe) {
+			System.out.println("Could not parse " + nfe);
+		}
+		switchBG(myNum);
+
+		PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+		wl = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK,
+				"Solar charger wake lock");
+		if (preferences.getBoolean("checkboxKeepAwake", true)) {
+
+			wl.acquire();
+		}
 	}
 
 	protected void onPause() {
 		super.onPause();
 		mSensorManager.unregisterListener(lightSensorEventListener);
+		if (wl.isHeld()) {
+			wl.release();
+		}
 	}
 
+	private void switchBG(int idx) {
+		// int resId = getResources().getIdentifier(aaa, "id",
+		// getPackageName());
+		for (int i = 0; i < BG_ID.length; i++) {
+			ImageView bg = (ImageView) findViewById(BG_ID[i]);
+			if (idx == i) {
+				bg.setVisibility(View.VISIBLE);
+			} else {
+				bg.setVisibility(View.GONE);
+			}
+
+		}
+		// Toast.makeText(getBaseContext(), "VALAMI " + idx,
+		// Toast.LENGTH_LONG).show();
+
+	}
 
 	SensorEventListener lightSensorEventListener = new SensorEventListener() {
 

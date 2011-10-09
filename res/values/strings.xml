@@ -55,4 +55,12 @@
 		venenatis. Aenean sed enim in eros interdum viverra et eget tellu
 	</string>
 	<string name="set_preferences">Preferences</string>
+	<string name="setings_category_first">Main</string>
+	<string name="setings_bg_list">Solar Panel Type</string>
+	<string name="setings_bg_list_sum">You can choose the solar panel type here.</string>
+	<string name="setings_keep_awake">Keep Device Awake</string>
+	<string name="setings_keep_awake_sum">Checking this prevents the device to switch off while sleeping.</string>
+	
+	
+	
 </resources>

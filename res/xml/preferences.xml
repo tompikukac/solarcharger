@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
         <PreferenceCategory
-                android:title="First Category">
+                android:title="@string/setings_category_first">
                 <CheckBoxPreference
-                        android:title="Checkbox Preference"
-                        android:defaultValue="false"
-                        android:summary="This preference can be true or false"
-                        android:key="checkboxPref" />
+                        android:title="@string/setings_keep_awake"
+                        android:defaultValue="true"
+                        android:summary="@string/setings_keep_awake_sum"
+                        android:key="checkboxKeepAwake" />
                 <ListPreference
-                        android:title="List Preference"
-                        android:summary="This preference allows to select an item in a array"
+                        android:title="@string/setings_bg_list"
+                        android:summary="@string/setings_bg_list_sum"
                         android:key="listPref"
-                        android:defaultValue="digiGreen"
+                        android:defaultValue="0"
                         android:entries="@array/listDisplayWord"
                         android:entryValues="@array/listReturnValue" />
         </PreferenceCategory>
