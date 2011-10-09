@@ -37,8 +37,10 @@ public class SolarChargerActivity extends SolarChargerBaseActivity {
 	VUMeter vuMeter;
 	BatteryLevel batteryLevel;
 	SharedPreferences preferences;
+	TextView stateText;
 	private int[] BG_ID = { R.id.view_bg_1, R.id.view_bg_2, R.id.view_bg_3 };
 	PowerManager.WakeLock wl;
+	private final int LIGHT_SENSOR_TRESHOLD = 600; 
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -47,11 +49,12 @@ public class SolarChargerActivity extends SolarChargerBaseActivity {
 
 		mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 		myLightSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
-		textLightSensorData = (TextView) findViewById(R.id.textView1);
+		//textLightSensorData = (TextView) findViewById(R.id.textView1);
 		vuMeter = (VUMeter) findViewById(R.id.VUComponent);
 		batteryLevel = (BatteryLevel) findViewById(R.id.BatteryComponent);
 		preferences = PreferenceManager.getDefaultSharedPreferences(this);
-
+		stateText= (TextView) findViewById(R.id.FeedbackTextDark);
+		Toast.makeText(getBaseContext(), R.string.hint_tap_vu_hide, Toast.LENGTH_LONG).show();
 	}
 
 	protected void onResume() {
@@ -115,10 +118,19 @@ public class SolarChargerActivity extends SolarChargerBaseActivity {
 		@Override
 		public void onSensorChanged(SensorEvent event) {
 			if (event.sensor.getType() == Sensor.TYPE_LIGHT) {
-				textLightSensorData.setText("Light Sensor Date:" + String.valueOf(event.values[0]));
+				//textLightSensorData.setText("Light Sensor Date:" + String.valueOf(event.values[0]));
+				vuMeter.setValue(event.values[0], 1000);
+				setChargingState(event.values[0] > LIGHT_SENSOR_TRESHOLD);
 			}
-			vuMeter.setValue(event.values[0], 1000);
 		}
 	};
-
+	
+	private void setChargingState(boolean isCharging)
+	{
+		if(isCharging) {
+			stateText.setText(R.string.str_FeedbackTextCharging);
+		} else {
+			stateText.setText(R.string.str_FeedbackTextDark);
+		}
+	}
 }

@@ -61,6 +61,8 @@
 	<string name="setings_keep_awake">Keep Device Awake</string>
 	<string name="setings_keep_awake_sum">Checking this prevents the device to switch off while sleeping.</string>
 	
+	<string name="str_FeedbackTextDark">Too dark here.\nPut the device into direct light!</string>
+	<string name="str_FeedbackTextCharging">Charging...</string>
 	
-	
+	<string name="hint_tap_vu_hide">Tap the VUMeter to hide it.</string>
 </resources>
