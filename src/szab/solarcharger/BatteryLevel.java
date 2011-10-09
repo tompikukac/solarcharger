@@ -32,6 +32,11 @@ public class BatteryLevel extends RelativeLayout {
 	private AttributeSet mAttrs;
 	private ImageView barFull;
 	private ImageView barEmpty;
+	ImageView sunIcon;
+	ImageView sunIconOk;
+	ImageView chargingIcon;
+	ImageView chargingIconOk;
+	
 	private TextView percentText;
 	BroadcastReceiver batteryLevelReceiver;
 
@@ -44,6 +49,12 @@ public class BatteryLevel extends RelativeLayout {
 		barFull = (ImageView) view.findViewById(R.id.batteryBarFull);
 		barEmpty = (ImageView) view.findViewById(R.id.batteryBarEmpty);
 		percentText = (TextView)view.findViewById(R.id.batteryPercentage);
+		
+		sunIcon = (ImageView) view.findViewById(R.id.sunIcon);
+		sunIconOk= (ImageView) view.findViewById(R.id.sunIconOk);
+		chargingIcon= (ImageView) view.findViewById(R.id.chargingIcon);
+		chargingIconOk= (ImageView) view.findViewById(R.id.chargingIconOk);
+		
 		setLevelinPercent(65);
 	}
 
@@ -70,5 +81,20 @@ public class BatteryLevel extends RelativeLayout {
 
 	public void unregisterBatteryReceiver() {
 		mContext.unregisterReceiver(this.mBatInfoReceiver);
+	}
+	
+	public void setChargingState(boolean isCharging)
+	{
+		if(isCharging) {
+			sunIcon.setVisibility(View.GONE);
+			sunIconOk.setVisibility(View.VISIBLE);
+			chargingIcon.setVisibility(View.VISIBLE);
+			chargingIconOk.setVisibility(View.GONE);
+		} else {
+			sunIcon.setVisibility(View.VISIBLE);
+			sunIconOk.setVisibility(View.GONE);
+			chargingIcon.setVisibility(View.GONE);
+			chargingIconOk.setVisibility(View.VISIBLE);
+		}
 	}
 }

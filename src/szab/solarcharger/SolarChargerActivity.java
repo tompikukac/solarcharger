@@ -132,5 +132,6 @@ public class SolarChargerActivity extends SolarChargerBaseActivity {
 		} else {
 			stateText.setText(R.string.str_FeedbackTextDark);
 		}
+		batteryLevel.setChargingState(isCharging);
 	}
 }
