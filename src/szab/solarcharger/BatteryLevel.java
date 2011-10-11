@@ -24,7 +24,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class BatteryLevel extends RelativeLayout {
+public class BatteryLevel extends RelativeLayout implements AnimationListener {
 
 	private static final String TAG = "SolarCharger";
 
@@ -36,6 +36,8 @@ public class BatteryLevel extends RelativeLayout {
 	ImageView sunIconOk;
 	ImageView chargingIcon;
 	ImageView chargingIconOk;
+	ImageView chargingAnim;
+	private boolean mIsCharging;
 	
 	private TextView percentText;
 	BroadcastReceiver batteryLevelReceiver;
@@ -54,6 +56,7 @@ public class BatteryLevel extends RelativeLayout {
 		sunIconOk= (ImageView) view.findViewById(R.id.sunIconOk);
 		chargingIcon= (ImageView) view.findViewById(R.id.chargingIcon);
 		chargingIconOk= (ImageView) view.findViewById(R.id.chargingIconOk);
+		chargingAnim = (ImageView) view.findViewById(R.id.chargingAnimation);
 		
 		setLevelinPercent(65);
 	}
@@ -75,6 +78,7 @@ public class BatteryLevel extends RelativeLayout {
 		}
 	};
 
+
 	public void registerBatteryReceiver() {
 		mContext.registerReceiver(this.mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
 	}
@@ -85,16 +89,56 @@ public class BatteryLevel extends RelativeLayout {
 	
 	public void setChargingState(boolean isCharging)
 	{
+		mIsCharging = isCharging;
 		if(isCharging) {
 			sunIcon.setVisibility(View.GONE);
 			sunIconOk.setVisibility(View.VISIBLE);
 			chargingIcon.setVisibility(View.VISIBLE);
 			chargingIconOk.setVisibility(View.GONE);
+			chargingAnim.startAnimation(slideInAnimation());
+			
 		} else {
 			sunIcon.setVisibility(View.VISIBLE);
 			sunIconOk.setVisibility(View.GONE);
 			chargingIcon.setVisibility(View.GONE);
 			chargingIconOk.setVisibility(View.VISIBLE);
+
 		}
+	}
+
+	@Override
+	public void onAnimationEnd(Animation arg0) {
+		if(mIsCharging) {
+		chargingAnim.startAnimation(slideInAnimation());
+		}
+	}
+
+	@Override
+	public void onAnimationRepeat(Animation arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onAnimationStart(Animation arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	private Animation slideInAnimation() {
+		TranslateAnimation anim = new TranslateAnimation(
+				Animation.RELATIVE_TO_PARENT, 0.0f, 
+				Animation.RELATIVE_TO_PARENT, 1.0f, 
+				Animation.RELATIVE_TO_PARENT, 0.0f,
+				Animation.RELATIVE_TO_PARENT, 0.0f);
+		anim.setInterpolator(new LinearInterpolator());
+		anim.setRepeatCount(0);
+		anim.setDuration(1000);
+		anim.setFillAfter(true);
+		anim.setFillBefore(true);
+		anim.setAnimationListener(this);
+
+		return anim;
+
 	}
 }

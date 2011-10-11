@@ -28,7 +28,7 @@
 		android:orientation="vertical"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent">
-		<LinearLayout
+		<!-- <LinearLayout
 			android:orientation="vertical"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
 				android:layout_gravity="center"
 				android:lines="2"
 				android:gravity="center" />
-		</LinearLayout>
+		</LinearLayout> -->
 		<szab.solarcharger.BatteryLevel
 			android:id="@+id/BatteryComponent"
 			android:layout_height="wrap_content"
@@ -58,27 +58,29 @@
 			android:layout_width="fill_parent">
 
 		</szab.solarcharger.VUMeter>
-		<FrameLayout
+		<RelativeLayout
+			android:id="@+id/centerMessage"
 			android:layout_height="fill_parent"
 			android:layout_width="fill_parent"
 			android:layout_gravity="center">
-			<FrameLayout
+			<RelativeLayout
 				android:layout_height="wrap_content"
-				android:layout_width="wrap_content"
+				android:layout_width="fill_parent"
 				android:background="@drawable/bg_white_border"
 				android:layout_gravity="center"
-				android:layout_margin="20dip">
+				android:gravity="center"
+				android:layout_centerHorizontal="true"
+				android:layout_centerInParent="true">
 				<TextView
-					android:id="@+id/FeedbackTextDark"
-					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
+					android:layout_width="fill_parent"
 					android:text="@string/str_FeedbackTextDark"
 					android:layout_gravity="center"
 					android:lines="2"
 					android:gravity="center"
 					android:layout_margin="20dip" />
-			</FrameLayout>
-		</FrameLayout>
+			</RelativeLayout>
+		</RelativeLayout>
 	</LinearLayout>
 
 </FrameLayout>
