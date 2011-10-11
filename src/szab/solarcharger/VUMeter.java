@@ -107,7 +107,7 @@ public class VUMeter extends LinearLayout implements OnClickListener,
 	@Override
 	public void onAnimationEnd(Animation arg0) {
 		
-		Log.d(TAG, "onAnimationEnd");
+		//Log.d(TAG, "onAnimationEnd");
 		if (arg0 == anim && vumeterOpened) {
 			animateTo();
 		} else if (arg0 == slideIn) {

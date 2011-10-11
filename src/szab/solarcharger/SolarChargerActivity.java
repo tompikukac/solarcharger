@@ -40,7 +40,7 @@ public class SolarChargerActivity extends SolarChargerBaseActivity {
 	RelativeLayout centerMsg;
 	private int[] BG_ID = { R.id.view_bg_1, R.id.view_bg_2, R.id.view_bg_3 };
 	PowerManager.WakeLock wl;
-	private final int LIGHT_SENSOR_TRESHOLD = 40;
+	private final int LIGHT_SENSOR_TRESHOLD = 400;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

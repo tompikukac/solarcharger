@@ -72,13 +72,23 @@
 					android:layout_height="fill_parent"
 					android:background="@drawable/grad_battery_full"
 					android:layout_weight=".30" />
-				<ImageView
+				<FrameLayout
 					android:id="@+id/batteryBarEmpty"
 					android:layout_width="fill_parent"
 					android:layout_height="fill_parent"
-					android:background="@drawable/grad_battery_empty"
 					android:visibility="visible"
-					android:layout_weight=".70" />
+					android:layout_weight=".70">
+					<ImageView
+						android:layout_width="fill_parent"
+						android:layout_height="fill_parent"
+						android:background="@drawable/grad_battery_empty"
+						android:visibility="visible" />
+					<ImageView
+						android:id="@+id/chargingAnimation"
+						android:layout_width="fill_parent"
+						android:layout_height="fill_parent"
+						android:background="@drawable/grad_battery_charge" />
+				</FrameLayout>
 			</LinearLayout>
 			<TextView
 				android:id="@+id/batteryPercentage"
@@ -87,11 +97,6 @@
 				android:text="65%"
 				android:layout_gravity="center"
 				android:gravity="center" />
-			<ImageView
-				android:id="@+id/chargingAnimation"
-				android:layout_width="8dip"
-				android:layout_height="fill_parent"
-				android:background="@drawable/grad_battery_charge" />
 		</FrameLayout>
 
 	</RelativeLayout>
