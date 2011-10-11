@@ -58,7 +58,27 @@
 			android:layout_width="fill_parent">
 
 		</szab.solarcharger.VUMeter>
-
+		<FrameLayout
+			android:layout_height="fill_parent"
+			android:layout_width="fill_parent"
+			android:layout_gravity="center">
+			<FrameLayout
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:background="@drawable/bg_white_border"
+				android:layout_gravity="center"
+				android:layout_margin="20dip">
+				<TextView
+					android:id="@+id/FeedbackTextDark"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/str_FeedbackTextDark"
+					android:layout_gravity="center"
+					android:lines="2"
+					android:gravity="center"
+					android:layout_margin="20dip" />
+			</FrameLayout>
+		</FrameLayout>
 	</LinearLayout>
 
 </FrameLayout>
