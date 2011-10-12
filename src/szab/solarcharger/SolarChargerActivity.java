@@ -9,7 +9,10 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.os.PowerManager;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
@@ -27,6 +30,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.hardware.SensorEventListener;
+import android.os.SystemClock;
 
 public class SolarChargerActivity extends SolarChargerBaseActivity {
 	private static final String TAG = "SolarCharger";
@@ -41,6 +45,9 @@ public class SolarChargerActivity extends SolarChargerBaseActivity {
 	private int[] BG_ID = { R.id.view_bg_1, R.id.view_bg_2, R.id.view_bg_3 };
 	PowerManager.WakeLock wl;
 	private final int LIGHT_SENSOR_TRESHOLD = 400;
+	private RefreshHandler mRefreshHandler = new RefreshHandler();
+	boolean isInChargingState = false;
+	boolean canCharge = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -79,6 +86,9 @@ public class SolarChargerActivity extends SolarChargerBaseActivity {
 		}
 
 		batteryLevel.registerBatteryReceiver();
+
+		mRefreshHandler.sendEmptyMessage(0);
+
 	}
 
 	protected void onPause() {
@@ -88,6 +98,7 @@ public class SolarChargerActivity extends SolarChargerBaseActivity {
 			wl.release();
 		}
 		batteryLevel.unregisterBatteryReceiver();
+		mRefreshHandler.quit();
 	}
 
 	private void switchBG(int idx) {
@@ -121,18 +132,48 @@ public class SolarChargerActivity extends SolarChargerBaseActivity {
 				// textLightSensorData.setText("Light Sensor Date:" +
 				// String.valueOf(event.values[0]));
 				vuMeter.setValue(event.values[0], 1000);
-				setChargingState(event.values[0] > LIGHT_SENSOR_TRESHOLD);
+				canCharge = event.values[0] > LIGHT_SENSOR_TRESHOLD;
 			}
 		}
 	};
 
+	class RefreshHandler extends Handler {
+		private boolean isQuit = false;
+
+		@Override
+		public void handleMessage(Message msg) {
+			if (!isQuit) {
+				SolarChargerActivity.this.updateUI();
+				this.removeMessages(0);
+				sendMessageDelayed(obtainMessage(0), 3000);
+			}
+		}
+
+		public void quit() {
+			isQuit = true;
+		}
+	};
+
+	private void updateUI() {
+		if (canCharge && !isInChargingState) {
+			setChargingState(true);
+		} else if (!canCharge && isInChargingState) {
+			setChargingState(false);
+		}
+	}
+
 	private void setChargingState(boolean isCharging) {
+		isInChargingState = isCharging;
+		// if (lastStateChange +3000< System.currentTimeMillis()) {
 		if (isCharging) {
+			Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+			v.vibrate(120);
 			Toast.makeText(getBaseContext(), R.string.str_FeedbackTextCharging, Toast.LENGTH_LONG).show();
 		} else {
 
 		}
 		centerMsg.setVisibility(isCharging ? View.GONE : View.VISIBLE);
 		batteryLevel.setChargingState(isCharging);
+		// }
 	}
 }
