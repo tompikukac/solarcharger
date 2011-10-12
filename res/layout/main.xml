@@ -1,86 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
-	<ImageView
-		android:id="@+id/view_bg_1"
-		android:layout_width="fill_parent"
-		android:layout_height="fill_parent"
-		android:background="@drawable/normal_bg_1"
-		android:visibility="gone" />
+	<szab.solarcharger.BatteryLevel
+		android:id="@+id/BatteryComponent"
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent">
 
-	<ImageView
-		android:id="@+id/view_bg_2"
-		android:layout_width="fill_parent"
-		android:layout_height="fill_parent"
-		android:background="@drawable/normal_bg_2"
-		android:visibility="gone" />
-
-	<ImageView
-		android:id="@+id/view_bg_3"
-		android:layout_width="fill_parent"
-		android:layout_height="fill_parent"
-		android:background="@drawable/normal_bg_3"
-		android:visibility="visible" />
-
-	<LinearLayout
-		android:orientation="vertical"
+	</szab.solarcharger.BatteryLevel>
+	<FrameLayout
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent">
-		<!-- <LinearLayout
+		<ImageView
+			android:id="@+id/view_bg_1"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:background="@drawable/normal_bg_1"
+			android:visibility="gone" />
+
+		<ImageView
+			android:id="@+id/view_bg_2"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:background="@drawable/normal_bg_2"
+			android:visibility="gone" />
+
+		<ImageView
+			android:id="@+id/view_bg_3"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:background="@drawable/normal_bg_3"
+			android:visibility="visible" />
+
+		<LinearLayout
 			android:orientation="vertical"
 			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:background="@drawable/bg_white_border">
-			<TextView
-				android:id="@+id/FeedbackTextDark"
-				android:layout_width="wrap_content"
+			android:layout_height="fill_parent">
+
+			<szab.solarcharger.VUMeter
+				android:id="@+id/VUComponent"
 				android:layout_height="wrap_content"
-				android:text="@string/str_FeedbackTextDark"
-				android:layout_marginLeft="10dip"
-				android:layout_marginRight="10dip"
-				android:layout_marginTop="10dip"
-				android:layout_marginBottom="10dip"
-				android:layout_gravity="center"
-				android:lines="2"
-				android:gravity="center" />
-		</LinearLayout> -->
-		<szab.solarcharger.BatteryLevel
-			android:id="@+id/BatteryComponent"
-			android:layout_height="wrap_content"
-			android:layout_width="fill_parent">
+				android:layout_width="fill_parent">
 
-		</szab.solarcharger.BatteryLevel>
-		<szab.solarcharger.VUMeter
-			android:id="@+id/VUComponent"
-			android:layout_height="wrap_content"
-			android:layout_width="fill_parent">
-
-		</szab.solarcharger.VUMeter>
-		<RelativeLayout
-			android:id="@+id/centerMessage"
-			android:layout_height="fill_parent"
-			android:layout_width="fill_parent"
-			android:layout_gravity="center">
+			</szab.solarcharger.VUMeter>
 			<RelativeLayout
-				android:layout_height="wrap_content"
+				android:id="@+id/centerMessage"
+				android:layout_height="fill_parent"
 				android:layout_width="fill_parent"
-				android:background="@drawable/bg_white_border"
-				android:layout_gravity="center"
-				android:gravity="center"
-				android:layout_centerHorizontal="true"
-				android:layout_centerInParent="true">
-				<TextView
+				android:layout_gravity="center">
+				<RelativeLayout
 					android:layout_height="wrap_content"
 					android:layout_width="fill_parent"
-					android:text="@string/str_FeedbackTextDark"
+					android:background="@drawable/bg_white_border"
 					android:layout_gravity="center"
-					android:lines="2"
 					android:gravity="center"
-					android:layout_margin="20dip" />
+					android:layout_centerHorizontal="true"
+					android:layout_centerInParent="true">
+					<TextView
+						android:layout_height="wrap_content"
+						android:layout_width="fill_parent"
+						android:text="@string/str_FeedbackTextDark"
+						android:layout_gravity="center"
+						android:lines="2"
+						android:gravity="center"
+						android:layout_margin="20dip" />
+				</RelativeLayout>
 			</RelativeLayout>
-		</RelativeLayout>
-	</LinearLayout>
+		</LinearLayout>
 
-</FrameLayout>
+	</FrameLayout>
+</LinearLayout>

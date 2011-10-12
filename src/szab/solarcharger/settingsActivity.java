@@ -15,7 +15,7 @@ public class settingsActivity extends PreferenceActivity {
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.preferences);
 		// Get the custom preference
-		Preference customPref = (Preference) findPreference("customPref");
+		/*Preference customPref = (Preference) findPreference("customPref");
 		customPref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 
 			public boolean onPreferenceClick(Preference preference) {
@@ -27,7 +27,7 @@ public class settingsActivity extends PreferenceActivity {
 				return true;
 			}
 
-		});
+		});*/
 	}
 
 	boolean CheckboxPreference;
@@ -42,11 +42,11 @@ public class settingsActivity extends PreferenceActivity {
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 		CheckboxPreference = prefs.getBoolean("checkboxPref", true);
 		ListPreference = prefs.getString("listPref", "nr1");
-		editTextPreference = prefs.getString("editTextPref", "Nothing has been entered");
-		ringtonePreference = prefs.getString("ringtonePref", "DEFAULT_RINGTONE_URI");
-		secondEditTextPreference = prefs.getString("SecondEditTextPref", "Nothing has been entered");
+		//editTextPreference = prefs.getString("editTextPref", "Nothing has been entered");
+		//ringtonePreference = prefs.getString("ringtonePref", "DEFAULT_RINGTONE_URI");
+		//secondEditTextPreference = prefs.getString("SecondEditTextPref", "Nothing has been entered");
 		// Get the custom preference
-		SharedPreferences mySharedPreferences = getSharedPreferences("myCustomSharedPrefs", Activity.MODE_PRIVATE);
-		customPref = mySharedPreferences.getString("myCusomPref", "");
+		//SharedPreferences mySharedPreferences = getSharedPreferences("myCustomSharedPrefs", Activity.MODE_PRIVATE);
+		//customPref = mySharedPreferences.getString("myCusomPref", "");
 	}
 }

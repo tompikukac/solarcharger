@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string-array name="listDisplayWord">
-		<item>bg 1</item>
-		<item>bg 2</item>
-		<item>bg 3</item>
+		<item>Normal</item>
+		<item>Assymetric</item>
+		<item>Desert</item>
 	</string-array>
 	<string-array name="listReturnValue">
 		<item>0</item>

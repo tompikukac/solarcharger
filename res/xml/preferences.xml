@@ -15,7 +15,7 @@
                         android:entries="@array/listDisplayWord"
                         android:entryValues="@array/listReturnValue" />
         </PreferenceCategory>
-        <PreferenceCategory
+       <!--  <PreferenceCategory
                 android:title="Second Category">
         <EditTextPreference
                 android:name="EditText Preference"
@@ -42,5 +42,5 @@
                 android:title="Custom Preference"
                 android:summary="This works almost like a button"
                 android:key="customPref" />
-        </PreferenceCategory>
+        </PreferenceCategory> -->
 </PreferenceScreen>
