@@ -4,12 +4,12 @@
 	android:orientation="vertical"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
-	<szab.solarcharger.BatteryLevel
+	<com.szlab.solarcharger.BatteryLevel
 		android:id="@+id/BatteryComponent"
 		android:layout_height="wrap_content"
 		android:layout_width="fill_parent">
 
-	</szab.solarcharger.BatteryLevel>
+	</com.szlab.solarcharger.BatteryLevel>
 	<FrameLayout
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent">
@@ -39,12 +39,12 @@
 			android:layout_width="fill_parent"
 			android:layout_height="fill_parent">
 
-			<szab.solarcharger.VUMeter
+			<com.szlab.solarcharger.VUMeter
 				android:id="@+id/VUComponent"
 				android:layout_height="wrap_content"
 				android:layout_width="fill_parent">
 
-			</szab.solarcharger.VUMeter>
+			</com.szlab.solarcharger.VUMeter>
 			<RelativeLayout
 				android:id="@+id/centerMessage"
 				android:layout_height="fill_parent"
