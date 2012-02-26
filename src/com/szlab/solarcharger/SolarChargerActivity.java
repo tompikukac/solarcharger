@@ -12,6 +12,7 @@ import android.os.Message;
 import android.os.PowerManager;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -51,6 +52,7 @@ public class SolarChargerActivity extends SolarChargerBaseActivity {
 
 	protected void onResume() {
 		super.onResume();
+
 		mSensorManager.registerListener(lightSensorEventListener, myLightSensor, SensorManager.SENSOR_DELAY_NORMAL);
 
 		String aaa = preferences.getString("listPref", "");
@@ -72,8 +74,7 @@ public class SolarChargerActivity extends SolarChargerBaseActivity {
 
 		batteryLevel.registerBatteryReceiver();
 
-		mRefreshHandler.sendEmptyMessage(0);
-
+		mRefreshHandler.start();
 	}
 
 	protected void onPause() {
@@ -116,6 +117,7 @@ public class SolarChargerActivity extends SolarChargerBaseActivity {
 			if (event.sensor.getType() == Sensor.TYPE_LIGHT) {
 				// textLightSensorData.setText("Light Sensor Date:" +
 				// String.valueOf(event.values[0]));
+				Log.d(TAG, String.format("sensor: %s", event.values[0]));
 				vuMeter.setValue(event.values[0], 1000);
 				canCharge = event.values[0] > LIGHT_SENSOR_TRESHOLD;
 			}
@@ -134,12 +136,18 @@ public class SolarChargerActivity extends SolarChargerBaseActivity {
 			}
 		}
 
+		public void start() {
+			isQuit = false;
+			sendEmptyMessage(0);
+		}
+		
 		public void quit() {
 			isQuit = true;
 		}
 	};
 
 	private void updateUI() {
+		Log.d(TAG, String.format("updateUI: %s, %s", canCharge ,isInChargingState));
 		if (canCharge && !isInChargingState) {
 			setChargingState(true);
 		} else if (!canCharge && isInChargingState) {

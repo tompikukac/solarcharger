@@ -8,34 +8,35 @@
 	<string name="helpLong">
 	<![CDATA[
 	<font color=\'white\'>
-<h2>Help!</h2>
+
+<h2>Help</h2>
 
 <p>Wow! you pressed the help menu!</p>
-<p>You are one of those rare users who are brave enough to read after something they are curoius!
+<p>You are one of those rare users brave enough to read up on something they are using!
 Maximum respect!<p>
 
 <p>A small hint about this app:</p>
 <ul>
-<li>This is not charging your battery! Of course not! It\'s not a rocket science to figure out this app never works. It is impossible to solar charge you phone without any hardware solar panel support. </li>
-<li>This application is probably draining your battery :) of course not mutch.</li>
+<li>This is not charging your battery! Of course not! It\'s not rocket science to figure out that would never work. It is impossible to solar charge you phone through its display, without a physical solar panel. </li>
+<li>This application is probably draining your battery :)</li>
 </ul>
 
-<p>What actually works then?</p>
+<p>Does anything work then?</p>
 <ul>
-<li>the light VU meter detects the amount of light what your devices proximity sensor can receive,</li>
-<li>you can open/close the VU meter by pressing it</li>
-<li>your battery level -displayed on the top- shows correct percentage</li>
-<li>if the external light is above a certain level it plays a nice animation for charging.</li>
-<li>you can change the solar panel background</li>
-<li>you can enable/disable the to prevent the device going to sleep.</li>
+<li>The light VU meter detects the amount of light what the light sensor receives</li>
+<li>You can open/close the VU meter by pressing it</li>
+<li>Your battery level -displayed on the top- shows correct percentage</li>
+<li>If the external light is above a certain level it plays a nice animation for charging</li>
+<li>You can change the solar panel background</li>
+<li>You can prevent the device from going to sleep</li>
 </ul>
 
-<p>Why this app is good for then?</p>
+<p>What good is this app then?</p>
 <ul>
 <li>After a couple of drinks it is fun to show your friends what a brilliant app you have.</li>
-<li>It was a good study for this small project to see how the workflowis going on in Android development from the sdk install to an actual release.</li>
+<li>It was a good study for this small project to see the Android workflow from sdk install to actual release.</li>
 <li>Each time I browse the Android market I find idiots giving one star to an application because of their own lame stupidness.
-I wanted to collect some of those people\'s and their comments. So I had to create something what is obviously not working :)
+I wanted to collect some of those people and their comments. So I had to create something obviously not working :)
 To confuse those llamas feel free to give 5 star rating with comments like \'wow it works\' or \'it saved my life\'... Be creative ;)</li>
 </ul>
 </font>

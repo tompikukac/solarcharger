@@ -63,8 +63,8 @@ public class VUMeter extends LinearLayout implements OnClickListener,
 		percent = percent > 1f ? 1f : percent;
 		float toA = (-40f + (80f * percent));
 
-		Log.d("tompi", "animateToPercent:" + percent + "|" + fromA + "|" + toA
-				+ "| " + rndDelta);
+//		Log.d("tompi", "animateToPercent:" + percent + "|" + fromA + "|" + toA
+//				+ "| " + rndDelta);
 		anim = new RotateAnimation(fromA, toA, Animation.RELATIVE_TO_SELF, 0f,
 				Animation.RELATIVE_TO_SELF, 1f);
 		anim.setInterpolator(new LinearInterpolator());
