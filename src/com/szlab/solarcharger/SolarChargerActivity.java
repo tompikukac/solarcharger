@@ -117,7 +117,7 @@ public class SolarChargerActivity extends SolarChargerBaseActivity {
 			if (event.sensor.getType() == Sensor.TYPE_LIGHT) {
 				// textLightSensorData.setText("Light Sensor Date:" +
 				// String.valueOf(event.values[0]));
-				Log.d(TAG, String.format("sensor: %s", event.values[0]));
+				//Log.d(TAG, String.format("sensor: %s", event.values[0]));
 				vuMeter.setValue(event.values[0], 1000);
 				canCharge = event.values[0] > LIGHT_SENSOR_TRESHOLD;
 			}
@@ -147,7 +147,7 @@ public class SolarChargerActivity extends SolarChargerBaseActivity {
 	};
 
 	private void updateUI() {
-		Log.d(TAG, String.format("updateUI: %s, %s", canCharge ,isInChargingState));
+		//Log.d(TAG, String.format("updateUI: %s, %s", canCharge ,isInChargingState));
 		if (canCharge && !isInChargingState) {
 			setChargingState(true);
 		} else if (!canCharge && isInChargingState) {

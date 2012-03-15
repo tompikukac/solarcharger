@@ -86,10 +86,10 @@ public class VUMeter extends LinearLayout implements OnClickListener,
 			if (!vumeterInamination) {
 				vumeterInamination = true;
 				if (vumeterOpened) {
-					Log.d(TAG, "slideOut");
+					//Log.d(TAG, "slideOut");
 					rootLayout.startAnimation(slideOut);
 				} else {
-					Log.d(TAG, "slideIn");
+					//Log.d(TAG, "slideIn");
 					rootLayout.startAnimation(slideIn);
 				}
 			}
@@ -107,12 +107,12 @@ public class VUMeter extends LinearLayout implements OnClickListener,
 		if (arg0 == anim && vumeterOpened) {
 			animateTo();
 		} else if (arg0 == slideIn) {
-			Log.d(TAG, "slideIn end");
+			//Log.d(TAG, "slideIn end");
 			vumeterInamination = false;
 			vumeterOpened = true;
 			animateTo();
 		} else if (arg0 == slideOut) {
-			Log.d(TAG, "slideOut end");
+			//Log.d(TAG, "slideOut end");
 			vumeterInamination = false;
 			vumeterOpened = false;
 		}
