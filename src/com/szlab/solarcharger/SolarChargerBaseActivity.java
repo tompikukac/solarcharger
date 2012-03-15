@@ -24,6 +24,14 @@ public class SolarChargerBaseActivity extends Activity {
 			Intent myIntent = new Intent(this, helpActivity.class);
 			this.startActivity(myIntent);
 			return true;
+		case R.id.menuHallOfFame:
+			Intent HOFIntent = new Intent(this, HallOfFameActivity.class);
+			this.startActivity(HOFIntent);
+			return true;
+		case R.id.menuHallOfShame:
+			Intent HOSIntent = new Intent(this, HallOfShameActivity.class);
+			this.startActivity(HOSIntent);
+			return true;
 		case R.id.menuSettings:
 			Intent settingsActivity = new Intent(getBaseContext(), settingsActivity.class);
 			startActivity(settingsActivity);

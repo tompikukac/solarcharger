@@ -7,6 +7,14 @@
 		android:title="@string/settings"
 		android:icon="@android:drawable/ic_menu_preferences" />
 	<item
+		android:id="@+id/menuHallOfFame"
+		android:title="@string/hallOfFame"
+		android:icon="@android:drawable/ic_menu_recent_history" />
+	<item
+		android:id="@+id/menuHallOfShame"
+		android:title="@string/hallOfShame"
+		android:icon="@android:drawable/ic_menu_recent_history" />
+	<item
 		android:id="@+id/menuHelp"
 		android:title="@string/help"
 		android:icon="@android:drawable/ic_menu_help" />
