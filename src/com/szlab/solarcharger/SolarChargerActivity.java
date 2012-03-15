@@ -30,7 +30,7 @@ public class SolarChargerActivity extends SolarChargerBaseActivity {
 	RelativeLayout centerMsg;
 	private int[] BG_ID = { R.id.view_bg_1, R.id.view_bg_2, R.id.view_bg_3 };
 	PowerManager.WakeLock wl;
-	private final int LIGHT_SENSOR_TRESHOLD = 400;
+	private final int LIGHT_SENSOR_TRESHOLD = 320;
 	private RefreshHandler mRefreshHandler = new RefreshHandler();
 	boolean isInChargingState = false;
 	boolean canCharge = false;
@@ -52,9 +52,14 @@ public class SolarChargerActivity extends SolarChargerBaseActivity {
 
 	protected void onResume() {
 		super.onResume();
-
-		mSensorManager.registerListener(lightSensorEventListener, myLightSensor, SensorManager.SENSOR_DELAY_NORMAL);
-
+		vuMeter.setValue(10, 1000);
+		if(myLightSensor != null) {
+			mSensorManager.registerListener(lightSensorEventListener, myLightSensor, SensorManager.SENSOR_DELAY_UI);
+		} else {
+			Log.d(TAG, String.format("instant charge!"));
+			vuMeter.setValue(LIGHT_SENSOR_TRESHOLD , LIGHT_SENSOR_TRESHOLD);
+			canCharge = true;
+		}
 		String aaa = preferences.getString("listPref", "");
 		int myNum = 0;
 
@@ -117,9 +122,9 @@ public class SolarChargerActivity extends SolarChargerBaseActivity {
 			if (event.sensor.getType() == Sensor.TYPE_LIGHT) {
 				// textLightSensorData.setText("Light Sensor Date:" +
 				// String.valueOf(event.values[0]));
-				//Log.d(TAG, String.format("sensor: %s", event.values[0]));
-				vuMeter.setValue(event.values[0], 1000);
-				canCharge = event.values[0] > LIGHT_SENSOR_TRESHOLD;
+				Log.d(TAG, String.format("sensor: %s", event.values[0]));
+				vuMeter.setValue(event.values[0], LIGHT_SENSOR_TRESHOLD*2);
+				canCharge = event.values[0] >= LIGHT_SENSOR_TRESHOLD;
 			}
 		}
 	};
