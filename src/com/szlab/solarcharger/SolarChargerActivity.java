@@ -6,6 +6,9 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -34,11 +37,14 @@ public class SolarChargerActivity extends SolarChargerBaseActivity {
 	private RefreshHandler mRefreshHandler = new RefreshHandler();
 	boolean isInChargingState = false;
 	boolean canCharge = false;
+	
+	private MediaPlayer mp;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+		setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
 		mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 		myLightSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
@@ -76,6 +82,14 @@ public class SolarChargerActivity extends SolarChargerBaseActivity {
 
 			wl.acquire();
 		}
+		
+		mp = MediaPlayer.create(getBaseContext(), R.raw.fing);
+		mp.setOnCompletionListener(new OnCompletionListener() {
+
+			@Override
+			public void onCompletion(MediaPlayer mp) {
+			}
+		});
 
 		batteryLevel.registerBatteryReceiver();
 
@@ -88,8 +102,17 @@ public class SolarChargerActivity extends SolarChargerBaseActivity {
 		if (wl.isHeld()) {
 			wl.release();
 		}
+		mp.release();
 		batteryLevel.unregisterBatteryReceiver();
 		mRefreshHandler.quit();
+	}
+	
+	public void playAudio() {
+		if (mp.isPlaying()) {
+			Log.w(TAG, "Playng!");
+		} else {
+			mp.start();
+		}
 	}
 
 	private void switchBG(int idx) {
@@ -166,9 +189,9 @@ public class SolarChargerActivity extends SolarChargerBaseActivity {
 		if (isCharging) {
 			Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 			v.vibrate(120);
+			playAudio();
 			Toast.makeText(getBaseContext(), R.string.str_FeedbackTextCharging, Toast.LENGTH_LONG).show();
 		} else {
-
 		}
 		centerMsg.setVisibility(isCharging ? View.GONE : View.VISIBLE);
 		batteryLevel.setChargingState(isCharging);
